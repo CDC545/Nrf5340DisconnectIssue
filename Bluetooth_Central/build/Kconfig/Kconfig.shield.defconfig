@@ -1,0 +1,2 @@
+osource "C:/NRFTestCode/Bluetooth_Central/boards/shields/*/Kconfig.defconfig"
+osource "C:/ncs/v2.9.0/nrf/boards/shields/*/Kconfig.defconfig"

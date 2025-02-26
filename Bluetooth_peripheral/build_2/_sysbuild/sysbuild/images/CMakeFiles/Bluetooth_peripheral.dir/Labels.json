@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_peripheral"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_peripheral.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_peripheral-complete.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/Bluetooth_peripheral-prefix/src/Bluetooth_peripheral-stamp/Bluetooth_peripheral-build.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/Bluetooth_peripheral-prefix/src/Bluetooth_peripheral-stamp/Bluetooth_peripheral-configure.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/Bluetooth_peripheral-prefix/src/Bluetooth_peripheral-stamp/Bluetooth_peripheral-download.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/Bluetooth_peripheral-prefix/src/Bluetooth_peripheral-stamp/Bluetooth_peripheral-install.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/Bluetooth_peripheral-prefix/src/Bluetooth_peripheral-stamp/Bluetooth_peripheral-mkdir.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/Bluetooth_peripheral-prefix/src/Bluetooth_peripheral-stamp/Bluetooth_peripheral-patch.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_peripheral/build_2/_sysbuild/sysbuild/images/Bluetooth_peripheral-prefix/src/Bluetooth_peripheral-stamp/Bluetooth_peripheral-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Bluetooth_peripheral"
+		],
+		"name" : "Bluetooth_peripheral"
+	}
+}

@@ -1,0 +1,10 @@
+default: Bluetooth_peripheral
+build_dir: C:/NRFTestCode/Bluetooth_peripheral/build_1
+domains:
+  - name: Bluetooth_peripheral
+    build_dir: C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral
+  - name: ipc_radio
+    build_dir: C:/NRFTestCode/Bluetooth_peripheral/build_1/ipc_radio
+flash_order:
+  - ipc_radio
+  - Bluetooth_peripheral

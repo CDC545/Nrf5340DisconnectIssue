@@ -1,0 +1,13 @@
+# Target labels
+ Bluetooth_Central
+# Source files and their labels
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_Central
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_Central.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_Central-complete.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-build.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-configure.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-download.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-install.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-mkdir.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-patch.rule
+C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-update.rule

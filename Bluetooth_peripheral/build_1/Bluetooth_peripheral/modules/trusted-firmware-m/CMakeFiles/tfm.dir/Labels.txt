@@ -1,0 +1,13 @@
+# Target labels
+ tfm
+# Source files and their labels
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/CMakeFiles/tfm
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/CMakeFiles/tfm.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/CMakeFiles/tfm-complete.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-build.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-configure.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-download.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-install.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-mkdir.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-patch.rule
+C:/NRFTestCode/Bluetooth_peripheral/build_1/Bluetooth_peripheral/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-update.rule

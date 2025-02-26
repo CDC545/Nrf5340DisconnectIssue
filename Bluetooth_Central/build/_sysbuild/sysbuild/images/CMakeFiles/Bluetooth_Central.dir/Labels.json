@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_Central"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_Central.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/CMakeFiles/Bluetooth_Central-complete.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-build.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-configure.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-download.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-install.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-mkdir.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-patch.rule"
+		},
+		{
+			"file" : "C:/NRFTestCode/Bluetooth_Central/build/_sysbuild/sysbuild/images/Bluetooth_Central-prefix/src/Bluetooth_Central-stamp/Bluetooth_Central-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Bluetooth_Central"
+		],
+		"name" : "Bluetooth_Central"
+	}
+}
