@@ -1,7 +1,0 @@
-west:
-  command: C:\ncs\toolchains\2d382dcd92\opt\bin\Scripts\west build --build-dir c:/NRFTestCode/Bluetooth_Central/build_1
-    c:/NRFTestCode/Bluetooth_Central --pristine --board nrf5340dk/nrf5340/cpuapp/ns
-    --sysbuild -- -DNCS_TOOLCHAIN_VERSION=NONE -DCONF_FILE=c:/NRFTestCode/Bluetooth_Central/prj.conf
-    -DDTC_OVERLAY_FILE=boards/nrf5340dk_nrf5340_cpuapp.overlay -DBOARD_ROOT=c:\NRFTestCode\Bluetooth_Central
-  topdir: c:\ncs\v2.8.0
-  version: 1.2.0
