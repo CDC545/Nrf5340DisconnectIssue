@@ -10,6 +10,7 @@
 #include <zephyr/settings/settings.h>
 #include <zephyr/shell/shell.h>
 #include <zephyr/bluetooth/conn.h>
+#include <dk_buttons_and_leds.h>
 
 
 #define BT_UUID_CUSTOM_SERVICE_VAL \
@@ -69,10 +70,10 @@ static struct bt_gatt_subscribe_params subscribe_params = {
 static BTDevice_t found_devices[MAX_DEVICES];
 static int num_found_devices = 0;
 
-// Add these declarations at the top of the file with other static declarations
+
 static bool security_params_requested = false;
 
-// Add this forward declaration at the top
+
 static void list_bonds_callback(const struct bt_bond_info *info, void *user_data);
 static int bond_count = 0;  // Add this with other static variables
 
@@ -102,8 +103,8 @@ static struct bt_conn_auth_info_cb auth_info_cb = {
     .pairing_complete = pairing_complete,
 };
 
-// Add a separate pairing callback structure for pairing events
-static struct bt_conn_cb conn_callbacks;  // Forward declare
+// Unused variable - keeping for future reference
+// static struct bt_conn_cb conn_callbacks;
 
 // Add this at the top with other static variables
 static struct bt_gatt_subscribe_params *current_subscribe_params = NULL;
@@ -232,7 +233,6 @@ static int peer_name_settings_set(const char *key, size_t len_rd,
                                 settings_read_cb read_cb, void *cb_arg)
 {
     const char *next;
-    int rc;
 
     if (!key) {
         return -ENOENT;
@@ -514,27 +514,6 @@ static bool data_cb(struct bt_data *data, void *user_data)
     return true;
 }
 
-static void exchange_mtu_cb(struct bt_conn *conn, uint8_t err,
-                         struct bt_gatt_exchange_params *params)
-{
-    if (err) {
-        LOG_ERR("MTU exchange failed (err %d)", err);
-        return;
-    }
-
-    LOG_INF("MTU exchange successful");
-
-    // Start GATT discovery after MTU exchange
-    discover_params.type = BT_GATT_DISCOVER_PRIMARY;
-    discover_params.uuid = NULL;
-    discover_params.start_handle = BT_ATT_FIRST_ATTRIBUTE_HANDLE;
-    discover_params.end_handle = BT_ATT_LAST_ATTRIBUTE_HANDLE;
-
-    err = bt_gatt_discover(conn, &discover_params);
-    if (err) {
-        LOG_ERR("Discover failed (err %d)", err);
-    }
-}
 
 static void device_found(const bt_addr_le_t *addr, int8_t rssi, uint8_t type,
                         struct net_buf_simple *ad)
@@ -661,8 +640,8 @@ static uint8_t notify_func(struct bt_conn *conn,
             LOG_INF("  Controller: %s", received_controller.controllerName);
             LOG_INF("  Address: %s", received_controller.controllerAddress);
             LOG_INF("  Type: 0x%04X", received_controller.controllerType);
-            LOG_INF("  Firmware: %.2f", received_controller.firmwareVersion);
-            LOG_INF("  Battery: %.1f%%", received_controller.batteryLevel);
+            LOG_INF("  Firmware: %.2f", (double)received_controller.firmwareVersion);
+            LOG_INF("  Battery: %.1f%%", (double)received_controller.batteryLevel);
             LOG_INF("  Status: 0x%02X", received_controller.status);
             LOG_INF("  Number of sensors: %d", received_controller.numberOfSensors);
             
@@ -674,7 +653,7 @@ static uint8_t notify_func(struct bt_conn *conn,
                 LOG_INF("  Sensor Type: 0x%04X", sensor_instances[i].meta->sensorType);
                 LOG_INF("  Reading Size: %d", sensor_instances[i].meta->readingSize);
                 LOG_INF("  Data Rate: %d Hz", sensor_instances[i].meta->dataRate);
-                LOG_INF("  Last Reading: %.2f", sensor_instances[i].sensorReading);
+                LOG_INF("  Last Reading: %.2f", (double)sensor_instances[i].sensorReading);
                 LOG_INF("  Last Update: %lld", sensor_instances[i].unixTime);
             }
             break;
@@ -707,7 +686,7 @@ static uint8_t notify_func(struct bt_conn *conn,
                     }
 
                     uint8_t sensor_id = bytes[idx++];
-                    uint8_t array_type = bytes[idx++];
+                    idx++; // Skip array_type byte
                     uint8_t data_type = bytes[idx++];
                     
                     // Read 4 bytes of sensor data
@@ -751,7 +730,7 @@ static uint8_t notify_func(struct bt_conn *conn,
                             sensor_instances[j].unixTime = timestamp;
                             LOG_DBG("Sensor %d updated: value=%.2f, type=0x%02X, time=%lld", 
                                    sensor_id,
-                                   sensor_instances[j].sensorReading,
+                                   (double)sensor_instances[j].sensorReading,
                                    sensor_type,
                                    sensor_instances[j].unixTime);
                             break;
@@ -766,7 +745,7 @@ static uint8_t notify_func(struct bt_conn *conn,
                     for (int i = 0; i < num_sensor_instances; i++) {
                         LOG_INF("Sensor %d reading: %.2f, time: %lld", 
                                sensor_instances[i].instanceId,
-                               sensor_instances[i].sensorReading,
+                               (double)sensor_instances[i].sensorReading,
                                sensor_instances[i].unixTime);
                     }
                     last_print = now;
@@ -1021,8 +1000,8 @@ static bool le_param_req(struct bt_conn *conn,
     
     LOG_INF("Central received parameter request from %s: interval (%.2f,%.2f) ms, latency %d, timeout %d ms",
             addr,
-            param->interval_min * 1.25,
-            param->interval_max * 1.25,
+            (double)param->interval_min * 1.25,
+            (double)param->interval_max * 1.25,
             param->latency,
             param->timeout * 10);
 
@@ -1038,7 +1017,7 @@ static void le_param_updated(struct bt_conn *conn, uint16_t interval,
                            uint16_t latency, uint16_t timeout)
 {
     LOG_INF("Connection parameters updated: interval %.2f ms, latency %d, timeout %d ms",
-            interval * 1.25, latency, timeout * 10);
+            (double)interval * 1.25, latency, timeout * 10);
 
     // Now update PHY to 2M
     struct bt_conn_le_phy_param phy_param = {
@@ -1505,6 +1484,11 @@ int enable_notifications(void)
     subscribe_params.notify = notify_func;
     subscribe_params.value = BT_GATT_CCC_NOTIFY;
 
+    // Use write_params and write_callback for subscription
+    is_enabling_notifications = true;
+    write_params.func = write_callback;
+    write_params.handle = subscribe_params.ccc_handle;
+
     // Subscribe to notifications
     int err = bt_gatt_subscribe(current_conn, &subscribe_params);
     if (err && err != -EALREADY) {
@@ -1554,6 +1538,11 @@ int disable_notifications(void)
         LOG_WRN("Notifications already disabled");
         return 0;
     }
+
+    // Use write_params and write_callback for unsubscription
+    is_enabling_notifications = false;
+    write_params.func = write_callback;
+    write_params.handle = subscribe_params.ccc_handle;
 
     int err = bt_gatt_unsubscribe(current_conn, &subscribe_params);
     if (err) {
@@ -1736,6 +1725,13 @@ int request_sensor_info(const char *target_device_name) {
         packet[idx++] = (timestamp_64 >> ((4-i) * 8)) & 0xFF;
     }
 
+    // Use write_params for the request
+    write_params.func = write_callback;
+    write_params.handle = subscribe_params.value_handle;
+    write_params.offset = 0;
+    write_params.data = packet;
+    write_params.length = packet_size;
+
     int err = bt_gatt_write_without_response(current_conn, 
                                            subscribe_params.value_handle,
                                            packet, 
@@ -1800,7 +1796,7 @@ int print_sensor_instances(void) {
         }
 
         // Print current reading and timestamp
-        LOG_INF("  Last Reading: %.2f", sensor_instances[i].sensorReading);
+        LOG_INF("  Last Reading: %.2f", (double)sensor_instances[i].sensorReading);
         LOG_INF("  Last Update: %lld", sensor_instances[i].unixTime);
     }
     return 0;
@@ -1910,5 +1906,35 @@ int request_sensor_data_stream(const char *target_device_name, uint8_t enable_st
 
     k_free(packet);
     return err;
+}
+
+// Add this function to load peer names from settings
+int load_peer_names(void)
+{
+    bt_addr_le_t addrs[CONFIG_BT_MAX_PAIRED];
+    char name_buffer[MAX_NAME_LENGTH];
+    
+    // Get all bonded devices
+    bond_count = 0;
+    bt_foreach_bond(BT_ID_DEFAULT, list_bonds_callback, addrs);
+    
+    // Load names for each device
+    for (int i = 0; i < bond_count; i++) {
+        int err = load_peer_name(&addrs[i], name_buffer, sizeof(name_buffer));
+        if (err == 0) {
+            // Store in runtime array
+            for (int j = 0; j < CONFIG_BT_MAX_PAIRED; j++) {
+                if (!peer_names[j].valid) {
+                    bt_addr_le_copy(&peer_names[j].addr, &addrs[i]);
+                    strncpy(peer_names[j].name, name_buffer, MAX_NAME_LENGTH - 1);
+                    peer_names[j].name[MAX_NAME_LENGTH - 1] = '\0';
+                    peer_names[j].valid = true;
+                    break;
+                }
+            }
+        }
+    }
+    
+    return 0;
 }
 

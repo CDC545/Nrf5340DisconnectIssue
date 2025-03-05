@@ -10,7 +10,6 @@
 #include "bluetooth.h"
 #include <zephyr/shell/shell.h>
 #include <zephyr/settings/settings.h>  // Correct include path
-#include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/conn.h>
 #include <zephyr/bluetooth/addr.h>
 #include <stdio.h>
@@ -121,15 +120,6 @@ static int init_button_and_leds(void)
 	return 0;
 }
 
-static void select_device(uint8_t device_number)
-{
-	if (device_number > 0 && device_number <= get_num_found_devices()) {
-		connect_to_device(device_number);
-	} else {
-		LOG_ERR("Invalid device number: %d", device_number);
-	}
-}
-
 // Add this function to handle the connect command
 static int cmd_connect(const struct shell *shell, size_t argc, char **argv)
 {
@@ -233,7 +223,8 @@ static void list_bonds_callback(const struct bt_bond_info *info, void *user_data
 // Update the bonds command handler
 static int cmd_bonds(const struct shell *shell, size_t argc, char **argv)
 {
- bluetooth_list_bonds();
+    int err = bluetooth_list_bonds();
+    return err;
 }
 
 // Update the forget command handler
